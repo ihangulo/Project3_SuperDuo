@@ -1,0 +1,41 @@
+<resources>
+    <dimen name="widget_margin">8dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="list_horizonal_margin">2dp</dimen>
+    <dimen name="share_button_margin">150dp</dimen>
+    <dimen name="TeamNames">14sp</dimen>
+    <dimen name="Score">30sp</dimen>
+    <dimen name="League">15sp</dimen>
+    <dimen name="score_list_item_padding">4dp</dimen>
+    <dimen name="score_list_item_elevation">4dp</dimen>
+
+
+
+    <!-- football widget -->
+    <dimen name="widget_today_default_width">180dp</dimen><!--  3 x cell - (70*cell -30) -->
+    <dimen name="widget_today_default_height">40dp</dimen><!--  1 x cell -->
+    <dimen name="widget_today_min_resize_width">180dp</dimen><!--3 x cell -->
+    <dimen name="widget_today_min_resize_height">40dp</dimen>
+    <dimen name="widget_today_large_width">220dp</dimen><!-- width 3x-4x ? -->
+    <!-- football list widget -->
+    <dimen name="widget_list_default_width">180dp</dimen><!-- 3 x cell -->
+    <dimen name="widget_list_default_height">110dp</dimen><!-- 3x cell -->
+    <dimen name="widget_list_min_resize_width">180dp</dimen> <!-- 3x - 4x -->
+    <dimen name="widget_list_min_resize_height">110dp</dimen>
+    <dimen name="widget_list_item_left_right_padding">4dp</dimen>
+    <dimen name="widget_list_item_top_bottom_padding">2dp</dimen>
+
+
+
+    <!-- Text Sizes - We are using DP here rather than SP because these are already large
+         font sizes, and going larger will cause lots of view problems.  This is only for
+         the large forecast numbers in the forecast list -->
+    <dimen name="football_widget_text_size">24dp</dimen>
+    <!-- This is an odd width, but we're trying to match the font closely to keep things working
+         on devices that don't yet have Roboto -->
+    <dimen name="football_widget_text_width">38dp</dimen>
+
+</resources>

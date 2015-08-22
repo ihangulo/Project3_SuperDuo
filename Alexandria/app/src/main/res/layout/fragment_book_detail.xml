@@ -1,0 +1,155 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="it.jaschke.alexandria.AddBookFragment"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="top">
+        <ScrollView android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:fillViewport="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="top">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+                <ImageView
+                    android:id="@+id/fullBookCover"
+                    android:layout_width="100dp"
+                    android:layout_height="145dp"
+                    android:contentDescription="@string/book_cover"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookTitle"
+                    android:textSize="@dimen/head_line"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookSubTitle"
+
+                    android:maxLines="5"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/normal_fontsize"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookAuthors"
+                    android:textSize="@dimen/normal_fontsize"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="@dimen/normal_fontsize"
+                    android:id="@+id/fullBookCategories"
+                    />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookDesc"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/normal_fontsize"
+                    android:layout_below="@+id/fullBookCover"
+                    android:layout_margin="10dp"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/delete_button"
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/delete_button"
+                android:drawableLeft="@drawable/ic_action_discard"
+                android:drawableStart="@drawable/ic_action_discard"
+
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/ok_button"
+
+                android:layout_weight="1"
+                android:id="@+id/save_button"
+                android:drawableLeft="@drawable/ic_action_accept"
+                android:drawableStart="@drawable/ic_action_accept"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_gravity="bottom"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right">-->
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/delete"-->
+                <!--style="?android:attr/buttonBarButtonStyle"-->
+                <!--android:id="@+id/delete_button"-->
+                <!--android:drawableLeft="@drawable/ic_action_discard"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginBottom="5dp"/>-->
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+
+</FrameLayout>

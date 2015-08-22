@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="fill_parent"
+             android:padding="@dimen/widget_margin"
+             android:background="@android:color/white"
+             android:id="@+id/widget_today_frame">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:id="@+id/widget_frame"
+    android:layout_gravity="bottom"
+    android:gravity="center_vertical|fill_vertical">
+
+    <!-- header -->
+    <LinearLayout
+        android:id="@+id/widget_header"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/primary"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="2dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/widget_today_title_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_launcher"
+
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/widget_today_title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="28dp"
+            android:text="@string/app_name"
+            android:textSize="12dp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_vertical"
+            android:gravity="left|center_vertical|start"
+            android:textAlignment="viewStart"/>
+
+        <TextView
+            android:id="@+id/widget_button_prev"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="@string/msg_widget_button_prev"
+            android:background="@color/primary"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/a11y_prev_match_button"
+            />
+        <TextView
+            android:id="@+id/widget_button_next"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="@string/msg_widget_button_next"
+            android:background="@color/primary"
+            android:clickable="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:contentDescription="@string/a11y_next_match_button"
+            />
+
+    </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <!-- contents area -->
+    <LinearLayout
+        android:id="@+id/widget_contents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical|fill_vertical">
+        <!-- Home team -->
+        <LinearLayout
+            android:id="@+id/widget_home"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="center_vertical">
+            <ImageView
+                android:id="@+id/widget_icon_home"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/team_pic_default"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/widget_text_home"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/primary_text"
+                android:ellipsize="end"
+                android:textSize="12dp"
+                android:textAlignment="center"
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <!-- home team score -->
+        <TextView
+            android:id="@+id/widget_home_goals"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/black"/>
+
+
+        <!-- center -->
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:id="@+id/widget_center"
+            android:layout_gravity="center_vertical"
+            android:gravity="center">
+<!--
+            <TextView
+                android:id="@+id/widget_vs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:textAlignment="center"
+                android:singleLine="true"
+                android:textSize="12dp"
+                />-->
+            <TextView
+                android:id="@+id/widget_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/primary_text"
+                android:textAlignment="center"
+                android:singleLine="true"
+                android:textSize="13dp"
+                />
+            <TextView
+                android:id="@+id/widget_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:textAlignment="center"
+                android:singleLine="true"
+                android:textSize="12dp"
+
+
+                />
+
+        </LinearLayout>
+        <!-- away team score -->
+        <TextView
+            android:id="@+id/widget_away_goals"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/black"/>
+
+        <!-- away team-->
+        <LinearLayout
+            android:id="@+id/widget_away"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_gravity="center_vertical">
+            <ImageView
+            android:id="@+id/widget_icon_away"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/team_pic_default"
+                />
+            <TextView
+                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/widget_text_away"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/primary_text"
+
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:singleLine="true"
+            android:ellipsize="end"/>
+        </LinearLayout>
+    </LinearLayout>
+            <TextView
+                android:id="@+id/widget_today_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/primary_text"
+                android:textSize="12dp"
+                android:text="@string/empty_football_widget"
+                android:layout_gravity="center_vertical"
+                android:visibility="invisible"/>
+    <!-- empty view -->
+
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

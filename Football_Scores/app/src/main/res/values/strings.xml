@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">Football Scores</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh" translatable="false">Refresh</string>
+
+    <string name="test_text">Test</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <!-- a11y -->
+    <string name="a11y_share_button">Share</string>
+    <string name="a11y_prev_match_button">Previous match select button</string>
+    <string name="a11y_next_match_button">Next match select button</string>
+    <string name="empty_football_list">There is no game</string>
+    <string name="empty_now_loading">Now Loading...</string>
+
+    <!-- fetch service -->
+
+    <string name="msg_data_sync_ok">New data is arrived!</string>
+    <string name="msg_data_sync_fail">Data sync fails. Please try again.</string>
+    <string name="no_internet_connection">There is no internet connection. Please check your device.</string>
+
+
+    <!-- Strings related to Widgets -->
+    <string name="title_widget_football">Football Today Widget</string>
+    <string name="title_widget_list">Football List Widget</string>
+    <string name="msg_widget_today_description">Football today widget</string>
+    <string name="msg_widget_list_description">Football list widget</string>
+    <string name="msg_widget_refresh">refresh football widget data</string>
+    <string name="empty_football_widget">There is no game (Within 36 hours)</string>
+
+    <string name="msg_widget_button_prev">&lt;</string>
+    <string name="msg_widget_button_next">&gt;</string>
+    <string name="msg_widget_txt_prematch">Prematch</string>
+
+    <string name="champions_league" translatable="false">UEFA Champions League</string>
+    <string name="bundesliga" translatable="false">Bundesliga</string>
+    <string name="premierleague" translatable="false">Premier League</string>
+    <string name="primeradivison" translatable="false">Primera Division</string>
+    <string name="seriaa" translatable="false" >Serie A</string>
+    <string name="matchday_text">Match day</string>
+    <string name="group_stage_text">Group stages</string>
+    <string name="first_knockout_round">First knockout round</string>
+    <string name="quarter_final">Quarter Final</string>
+    <string name="semi_final">Semi Final</string>
+    <string name="final_text">Final</string>
+    <string name="share_text">Share</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_text">
+        This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
+        and the Uefa Champions League.
+        All Matches data are acquired from football-data.org free API.
+        All team Logos are acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
+        The original version of this app was created by Yahia Khalid Ibn El Walid Ahmed, and a modified version is given to students in the Udacity Android Nanodegree program.
+        To report any bugs,or suggestions do not hesitate to send a mail to y.k.ibnelwalid@gmail.com.
+
+        During the off season, fake data will be added to the app.
+    </string>
+    <string name="widget_text">This is a widget probably.</string>
+    <string name="dummy_data" translatable="false">{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",
+        \"count\":1,
+        \"fixtures\":[
+
+
+        {\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140511\"},
+        \"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},
+        \"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},
+        \"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},
+        \"date\":\"2015-06-19T18:00:00Z\",
+        \"status\":\"FINISHED\",
+        \"matchday\":42,
+        \"homeTeamName\":\"Stoke City FC\",
+        \"awayTeamName\":\"Swansea City\",
+        \"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},
+
+        {\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140512\"},
+        \"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},
+        \"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},
+        \"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},
+        \"date\":\"2015-06-19T19:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,
+        \"homeTeamName\":\"Leicester City\",
+        \"awayTeamName\":\"West Bromwich Albion\",
+        \"result\":{\"goalsHomeTeam\":3,
+        \"goalsAwayTeam\":0}},
+
+        {\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140513\"},
+        \"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},
+        \"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},
+        \"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},
+        \"date\":\"2015-06-19T21:00:00Z\",\"status\":\"FINISHED\",
+        \"matchday\":42,\"homeTeamName\":\"Tottenham Hotspur FC\",
+        \"awayTeamName\":\"West Ham United FC\",
+        \"result\":{\"goalsHomeTeam\":0,\"goalsAwayTeam\":1}},
+
+
+        {\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},
+        \"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},
+        \"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},
+        \"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},
+        \"date\":\"2015-06-19T20:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,
+        \"homeTeamName\":\"Everton FC\",
+        \"awayTeamName\":\"Leicester City\",
+        \"result\":{\"goalsHomeTeam\":1,\"goalsAwayTeam\":4}},
+
+
+        {\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140515\"},
+        \"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},
+        \"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},
+        \"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},
+        \"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",
+        \"matchday\":42,
+        \"homeTeamName\":\"Manchester United FC\",
+        \"awayTeamName\":\"Swansea City\",
+        \"result\":{\"goalsHomeTeam\":3,\"goalsAwayTeam\":2}}]}</string>
+    </resources>
+<!--
+ "Arsenal London FC" : return R.drawable.arsenal;
+            case "Manchester United FC" : http://api.football-data.org/alpha/teams/66 return R.drawable.manchester_united;
+            case "Swansea City" : http://api.football-data.org/alpha/teams/72 return R.drawable.swansea_city_afc;
+            case "Leicester City" :http://api.football-data.org/alpha/teams/63  return R.drawable.leicester_city_fc_hd_logo;
+            case "Everton FC" :http://api.football-data.org/alpha/teams/62  return R.drawable.everton_fc_logo1;
+            case "West Ham United FC" :  http://api.football-data.org/alpha/teams/563   return R.drawable.west_ham;
+            case "Tottenham Hotspur FC" : http://api.football-data.org/alpha/teams/73  return R.drawable.tottenham_hotspur;
+            case "West Bromwich Albion" : http://api.football-data.org/alpha/teams/74  return R.drawable.west_bromwich_albion_hd_logo;
+            case "Sunderland AFC" :http://api.football-data.org/alpha/teams/71  return R.drawable.sunderland;
+            case "Stoke City FC" :http://api.football-data.org/alpha/teams/70  return
+-->

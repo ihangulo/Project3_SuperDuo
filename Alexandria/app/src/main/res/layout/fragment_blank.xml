@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical|center">
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textview_blank"
+        android:text="@string/app_name"
+        android:drawableTop="@drawable/ic_library_books_black_48dp"
+        android:padding="5dp"
+        android:contentDescription="@string/blank_icon"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:enabled="false"/>
+
+</LinearLayout>

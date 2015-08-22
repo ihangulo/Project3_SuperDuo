@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="barqsoft.footballscores" >
+
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:maxSdkVersion="22" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- check intenet connection [from feedback of Josh] -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:supportsRtl="true"
+        android:launchMode="singleTask"
+
+        > <!-- Layout mirroring  http://android-developers.blogspot.kr/2013/03/native-rtl-support-in-android-42.html-->
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="barqsoft.footballscores.data.ScoresProvider"
+            android:authorities="barqsoft.footballscores" />
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="About"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="barqsoft.footballscores.MainActivity" />
+        </activity>
+
+        <!-- main data fetch service -->
+        <service android:name=".service.FootballFetchService" />
+
+
+        <!-- Football Widget -->
+        <receiver
+            android:name=".widget.FootballTodayWidgetProvider"
+            android:label="@string/title_widget_football" >
+            <intent-filter>
+                    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                   <action android:name="barqsoft.footballscores.ACTION_DATA_UPDATED" />
+                   <action android:name="barqsoft.footballscores.ACTION_NEXT_PRESSED" />
+                   <action android:name="barqsoft.footballscores.ACTION_PREV_PRESSED" />
+                    <action android:name="barqsoft.footballscores.ACTION_FETCH_UPDATED"/>
+                </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_today" />
+        </receiver>
+        <service android:name=".widget.FootballTodayWidgetIntentService" />
+        <!-- Footbal widget with collections -->
+        <receiver
+            android:name=".widget.FootballListWidgetProvider"
+            android:label="@string/title_widget_list"
+            android:enabled="@bool/widget_detail_enabled" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="barqsoft.footballscores.ACTION_DATA_UPDATED" />
+                <action android:name="barqsoft.footballscores.ACTION_FETCH_UPDATED"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                       android:resource="@xml/widget_info_list" />
+        </receiver>
+        <service
+            android:name=".widget.FootballListWidgetRemoteViewsService"
+            android:enabled="@bool/widget_detail_enabled"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+    </application>
+
+</manifest>

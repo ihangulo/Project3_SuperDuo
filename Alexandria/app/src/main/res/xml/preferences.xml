@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:tag="PREFERENCE_TAG"
+    >
+
+    <ListPreference
+        android:key="@string/pref_pref_startScreen_key"
+        android:title="@string/pref_startScreen"
+        android:summary="%s"
+        android:entries="@array/pref_start_options"
+        android:entryValues="@array/pref_start_values"
+        android:defaultValue="@string/pref_start_default"
+        />
+    <ListPreference
+        android:key="@string/pref_scanType_key"
+        android:title="@string/pref_scanType"
+        android:summary="%s"
+        android:entries="@array/pref_scan_options"
+        android:entryValues="@array/pref_scan_values"
+        android:defaultValue="@string/pref_scan_default"
+        />
+
+
+</PreferenceScreen>
