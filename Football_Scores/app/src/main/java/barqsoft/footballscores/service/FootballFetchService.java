@@ -42,7 +42,7 @@ import barqsoft.footballscores.widget.FootballWidget;
 public class FootballFetchService extends IntentService {
     public static final String LOG_TAG = "FootballFetchService";
 
-    private static final String MY_KEY = ""; // your key here
+    private static final String MY_KEY = " "; // your key here
 
     private static final int MODE_TIME_FRAME = 0;
     private static final int MODE_MATCH_DAY = 1;

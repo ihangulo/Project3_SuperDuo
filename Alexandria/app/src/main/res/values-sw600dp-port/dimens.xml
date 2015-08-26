@@ -16,7 +16,7 @@
 <resources>
     <!-- Extra List Item Margin (tablet-only) -->
 
-    <dimen name="fragment_add_book_topmargin">10dp</dimen>
+    <dimen name="fragment_add_book_topmargin">2dp</dimen>
 
     <dimen name="list_item_extra_padding">80dp</dimen>
 

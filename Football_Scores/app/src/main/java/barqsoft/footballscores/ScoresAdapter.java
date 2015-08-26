@@ -63,16 +63,24 @@ public class ScoresAdapter extends CursorAdapter
         mHolder.home_name.setText(cursor.getString(COL_HOME));
         mHolder.away_name.setText(cursor.getString(COL_AWAY));
 
+        mHolder.home_name.setContentDescription(cursor.getString(COL_HOME));
+        mHolder.away_name.setContentDescription(cursor.getString(COL_AWAY));
+
+
         mHolder.date.setText(cursor.getString(COL_MATCHTIME)); // not use column
+        mHolder.date.setContentDescription(cursor.getString(COL_MATCHTIME)); // not use column
 
         mHolder.score.setText(Utility.getScores(cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS)));
+        mHolder.score.setContentDescription(Utility.getScores(cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS)));
 
         mHolder.match_id = cursor.getLong(COL_MATCH_ID);
 
         mHolder.home_crest.setImageResource(Utility.getTeamCrestByTeamName(
-                cursor.getString(COL_HOME)));
+                cursor.getString(COL_HOME))); // already contentDescription null (it is not need) (too noisy)
         mHolder.away_crest.setImageResource(Utility.getTeamCrestByTeamName(
-                cursor.getString(COL_AWAY)));
+                cursor.getString(COL_AWAY))); // already contentDescription null (it is not need) (too noisy)
+
+
 
         LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,6 +98,7 @@ public class ScoresAdapter extends CursorAdapter
                     cursor.getInt(COL_LEAGUE)));
             TextView league = (TextView) v.findViewById(R.id.league_textview);
             league.setText(Utility.getLeague(cursor.getInt(COL_LEAGUE)));
+            league.setContentDescription(Utility.getLeague(cursor.getInt(COL_LEAGUE)));
 
             // Share button
             Button share_button = (Button) v.findViewById(R.id.share_button);

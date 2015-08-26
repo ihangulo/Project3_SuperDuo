@@ -31,11 +31,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import com.squareup.picasso.Picasso;
-
-import it.jaschke.alexandria.api.Callback;
 import it.jaschke.alexandria.barcode.SimpleScannerActivity;
 import it.jaschke.alexandria.data.AlexandriaContract;
 import it.jaschke.alexandria.services.BookService;
@@ -57,21 +53,14 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
 
     final static int REQUEST_CODE_SCANNER_INTERNAL = 100;
     final static int REQUEST_CODE_SCANNER_EXTERNAL = 200;
-    //final static int RESULT_OK=1;
 
     private EditText mEditTxtEan;
     private final int LOADER_ID = 1;
     private View rootView;
     private final String EAN_CONTENT="eanContent";
 
-    //private static final String SCAN_FORMAT = "scanFormat";
-    //private static final String SCAN_CONTENTS = "scanContents";
-
-    //private String mScanFormat = "Format:";
-    //private String mScanContents = "Contents:";
-
     private ImageView mBookCover;
-    private TextView mTxtViewTitle;
+    private TextView mTxtViewTitle1;
     private TextView mTxtViewSubTitle;
     private TextView mTxtViewAuthors;
     private TextView mTxtViewCat;
@@ -82,6 +71,9 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
 
     private int mScanType = 0 ; // 0 :internal scan 1:external scan
 
+    boolean newStart = false;
+    String lastSuccessEan=null;
+
     public AddBookFragment(){
     }
 
@@ -90,6 +82,11 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         super.onSaveInstanceState(outState);
         if(mEditTxtEan !=null) {
             outState.putString(EAN_CONTENT, mEditTxtEan.getText().toString());
+            if (lastSuccessEan!=null && lastSuccessEan.length()==13) { // save recent successful fecthed book's ean
+                outState.putString("LASTEAN", lastSuccessEan);
+                outState.putBoolean("NEWSTART", true);
+            }
+
         }
     }
 
@@ -100,13 +97,18 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         mEditTxtEan = (EditText) rootView.findViewById(R.id.ean);
 
         mBookCover = (ImageView) rootView.findViewById(R.id.bookCover);
-        mTxtViewTitle = (TextView) rootView.findViewById(R.id.bookTitle);
+        mTxtViewTitle1 = (TextView) rootView.findViewById(R.id.bookTitle1);
         mTxtViewSubTitle = (TextView) rootView.findViewById(R.id.bookSubTitle);
         mTxtViewAuthors= (TextView) rootView.findViewById(R.id.authors);
         mTxtViewCat = (TextView) rootView.findViewById(R.id.categories);
         mBtnSave =(Button) rootView.findViewById(R.id.save_button);
         mBtnDelete=(Button) rootView.findViewById(R.id.delete_button);
         mBtnScan = (Button) rootView.findViewById(R.id.scan_button);
+
+        ImageView imgView = (ImageView) rootView.findViewById(R.id.imageView);
+        if (MainActivity.mTwoPane)
+            if (imgView != null)
+                imgView.setVisibility(View.GONE); // image icon
 
         // default --> by Isbn is default
         mEditTxtEan.addTextChangedListener(new TextWatcher() {
@@ -127,16 +129,26 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
 
                 // check is that all digit
                 if (!TextUtils.isDigitsOnly(s)) {
-                     Toast.makeText(getActivity(), getString(R.string.digits_only), Toast.LENGTH_SHORT).show();
-                     return;
+                    Toast.makeText(getActivity(), getString(R.string.digits_only), Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 // catch isbn10 numbers
                 if (ean.length() == 10 && !ean.startsWith("978")) {
-                        ean = "978" + ean;
+                    ean = "978" + ean;
                 }
                 if (ean.length() < 13) {
-                    clearFields();
+                 /*
+                    Code Reviewer's comment
+                    2.The bug for the UX feedback - "The app could use some work. Sometimes when I add a book and
+                    don’t double-check the ISBN, it just disappears!” isn't fixed and can be reproduced as follows:
+                    Add a valid ISBN code, say 1234567897, let the book detail load. Then, add another digit,
+                    say 2 to the already typed ISBN code, now at this point since the ISBN is invalid,
+                    the book details are also cleared. The user might have entered that extra digit accidentally,
+                    so ideally, whenever a book's detail is loaded let it stay on the screen until a new valid ISBN is entered.
+                     */
+
+                    // clearFields(); //  <=== so i'v  commenting out this line.. it works! and something more changed!
                     return;
                 }
 
@@ -162,18 +174,19 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                     case 1:
                         lauchExternalBarcodeScannerApp(); // using app (https://play.google.com/store/apps/details?id=com.google.zxing.client.android)
                         break;
-                    default :
+                    default:
                         launchInternalBarcodeScanner(); // using internal library
                 }
 
             }
         });
 
-
+        // button next
         mBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mEditTxtEan.setText("");
+                clearFields();
 
             }
         });
@@ -195,6 +208,7 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                                 bookIntent.setAction(BookService.DELETE_BOOK);
                                 getActivity().startService(bookIntent);
                                 mEditTxtEan.setText("");
+                                clearFields();
                             }
                         })
                         .setNegativeButton(getString(R.string.msg_cancel), new DialogInterface.OnClickListener() {
@@ -207,10 +221,19 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                 dialog.show();
             }
         });
-
+        clearFields();
         if(savedInstanceState!=null){
             mEditTxtEan.setText(savedInstanceState.getString(EAN_CONTENT));
             mEditTxtEan.setHint("");
+            lastSuccessEan = savedInstanceState.getString("LASTEAN",null);
+            if (lastSuccessEan!=null && lastSuccessEan.length()!=13) { // if not valid
+                lastSuccessEan = null;
+                newStart=false;
+            }
+            else
+                newStart= savedInstanceState.getBoolean("NEWSTART",false); // is that new start?
+
+            AddBookFragment.this.restartLoader();
         }
 
         return rootView;
@@ -219,6 +242,7 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
 
     void AddBoookIsbnRefresh() {
         mEditTxtEan.setText("");
+        //lastValidEan=null;
     }
 
     @Override
@@ -337,12 +361,17 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-
         // remove loading circle
         ProgressBar progressCircle = (ProgressBar) rootView.findViewById(R.id.progressCircle); // view progressbarif (progressCircle != null)
         progressCircle.setVisibility(View.VISIBLE);
 
-        String eanStr= mEditTxtEan.getText().toString();
+
+        // if rotate screen, EditText is garbage(there is no book ean) but below screen has recent successful fetched data...
+        String eanStr="";
+        if (newStart && lastSuccessEan!=null)
+            eanStr=lastSuccessEan;
+        else
+            eanStr= mEditTxtEan.getText().toString();
 
         if(eanStr.length()<10){
             return null;
@@ -372,13 +401,26 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
         ProgressBar progressCircle = (ProgressBar) rootView.findViewById(R.id.progressCircle); // view progressbarif (progressCircle != null)/
         progressCircle.setVisibility(View.INVISIBLE);
 
-        if (!cursor.moveToFirst()) {
+        if (!cursor.moveToFirst()) { // if there is no data
             return;
         }
         // if tabletmode
 
-        // get data ID
-        final String  _ID = mEditTxtEan.getText().toString();
+        String _ID="";
+        if (newStart && lastSuccessEan!=null) {
+            _ID = lastSuccessEan;
+            newStart=false;
+        }
+        else {
+            // get data ID
+             _ID = mEditTxtEan.getText().toString();
+            if (_ID.length() == 10 && !_ID.startsWith("978")) { // to make ISBN-13
+                _ID = "978" + _ID;
+            }
+            lastSuccessEan=_ID; // save current screen EAN
+        }
+
+
 
         if (MainActivity.mTwoPane) {
 
@@ -394,6 +436,7 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
             handler.sendMessage(msg); // just call handler , callback function (right pannel information)
 
             hideKeyboard();
+
             return;
         } else {
 
@@ -401,8 +444,8 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
 
             try {
                 String bookTitle = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
-                if (mTxtViewTitle != null && bookTitle != null)
-                    mTxtViewTitle.setText(bookTitle);
+                if (mTxtViewTitle1 != null && bookTitle != null)
+                    mTxtViewTitle1.setText(bookTitle);
 
                 String bookSubTitle = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
                 if (mTxtViewSubTitle != null && bookSubTitle != null)
@@ -441,13 +484,13 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
                             .into(mBookCover);
                 }
 
-                mBookCover.setVisibility(View.VISIBLE);
+
                 String categories = cursor.getString(cursor.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
 
 
                 mTxtViewCat.setText(categories);
 
-                mBookCover.setVisibility(View.VISIBLE);
+
                 mBtnSave.setVisibility(View.VISIBLE);
                 mBtnDelete.setVisibility(View.VISIBLE);
 
@@ -466,13 +509,15 @@ public class AddBookFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     private void clearFields(){
-        mTxtViewTitle.setText("");
+
+        mTxtViewTitle1.setText("");
         mTxtViewSubTitle.setText("");
         mTxtViewAuthors.setText("");
         mTxtViewCat.setText("");
-        mBookCover.setVisibility(View.INVISIBLE);
+        mBookCover.setImageBitmap(null);
         mBtnSave.setVisibility(View.INVISIBLE);
         mBtnDelete.setVisibility(View.INVISIBLE);
+        lastSuccessEan=null;
     }
 
     @Override

@@ -302,7 +302,7 @@ public class BookService extends IntentService {
             Log.e(LOG_TAG, "Error[writeBackBook] :", e);
         }
 
-        // TODO 에러처리는?
+
     }
 
     // write Author info into Database

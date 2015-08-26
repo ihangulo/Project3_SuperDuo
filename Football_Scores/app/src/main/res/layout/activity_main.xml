@@ -9,5 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:contentDescription="@string/now_loading_circle" />
 </FrameLayout>

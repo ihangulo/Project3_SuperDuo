@@ -36,6 +36,7 @@
             android:layout_gravity="center"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/empty_now_loading"
+            android:contentDescription="@string/empty_now_loading"
         />
     </LinearLayout>
 

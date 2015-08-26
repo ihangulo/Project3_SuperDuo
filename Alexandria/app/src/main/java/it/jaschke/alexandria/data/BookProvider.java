@@ -181,8 +181,6 @@ public class BookProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
 
-        //TODO retCursor가 null이면 어떻게 하려고? 에러처리가 필요하다 --> 같은 책일 경우... 메시지가 필요하다.
-
         if (retCursor != null)
             retCursor.setNotificationUri(getContext().getContentResolver(), uri);
 

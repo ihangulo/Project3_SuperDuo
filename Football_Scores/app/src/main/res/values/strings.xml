@@ -16,6 +16,8 @@
     <string name="a11y_next_match_button">Next match select button</string>
     <string name="empty_football_list">There is no game</string>
     <string name="empty_now_loading">Now Loading...</string>
+    <string name="now_loading_circle">Now Loading progress circle</string>
+    <string name="widget_list_icon">widget list icon</string>
 
     <!-- fetch service -->
 

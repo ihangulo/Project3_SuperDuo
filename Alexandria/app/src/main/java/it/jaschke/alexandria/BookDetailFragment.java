@@ -234,13 +234,23 @@ public class BookDetailFragment extends Fragment implements LoaderManager.Loader
             mTxtViewDesc.setText(desc);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
+
+        // Code Review:
+        // After adding a book with no authors, when tried to view from list of books, the App crashes!
+        // --> solved
+        /* Comments
+        You seem to forgot to check authors for null value here as you have done in AddBookFragment.java.
+        You need to handle it to view books added with no authors. Eg: ISBN code with no authors
+        - http://barcode1.in/wp-content/uploads/isbn-sample.gif
+         */
+        if (authors == null)
+            authors = ""; // error passing
         String[] authorsArr = authors.split(",");
-
-
         if (mTxtViewAuthor != null) {
-            mTxtViewAuthor.setLines(authorsArr.length);
-            mTxtViewAuthor.setText(authors.replace(",", "\n"));
+                mTxtViewAuthor.setLines(authorsArr.length);
+                mTxtViewAuthor.setText(authors.replace(",", "\n"));
         }
+
 
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
 

@@ -67,6 +67,7 @@
     <string name="book_already_registerd">This book [%1$s] is already registered. Please check your book list.</string>
     <string name="fail_to_scan">Sorry. Fail to scan. Please try again.</string>
     <string name="digits_only">Please enter digits only..</string>
+    <string name="msg_samebook">It\'s same book which is displayed now.</string>
 
     <!-- list menu Search options -->
     <string name="search_by_isbn_hint">Enter ISBN-13</string>
